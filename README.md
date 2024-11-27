@@ -3,4 +3,4 @@
 
 
 
-# pip install ultralytics supervision typer opencv-python
+ pip install ultralytics supervision typer opencv-python
