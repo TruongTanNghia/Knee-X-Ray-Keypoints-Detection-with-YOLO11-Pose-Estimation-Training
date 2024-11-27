@@ -6,5 +6,4 @@
  pip install ultralytics supervision typer opencv-python
 
 
- python script.py images --input-dir ./input_images --output-dir ./output_images
 
