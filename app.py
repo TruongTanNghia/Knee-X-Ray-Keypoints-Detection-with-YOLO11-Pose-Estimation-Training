@@ -1,10 +1,11 @@
+from supervision import BoxAnnotator
 import cv2
 from ultralytics import YOLO
 import supervision as sv
 import pyresearch
 
 # Load YOLO model
-model = YOLO("last.pt")
+model = YOLO("./last.pt")
 
 def process_image(input_image: str, output_image: str):
     # Read the image
@@ -19,8 +20,8 @@ def process_image(input_image: str, output_image: str):
     # Perform detection
     detections = sv.Detections.from_ultralytics(model(resized)[0])
 
-    # Annotate the image
-    annotated = sv.BoundingBoxAnnotator().annotate(scene=resized, detections=detections)
+    # Annotate the image using BoxAnnotator instead of BoundingBoxAnnotator
+    annotated = BoxAnnotator().annotate(scene=resized, detections=detections)
     annotated = sv.LabelAnnotator().annotate(scene=annotated, detections=detections)
 
     # Save the annotated image
@@ -28,4 +29,4 @@ def process_image(input_image: str, output_image: str):
     print(f"Processed and saved: {output_image}")
 
 if __name__ == "__main__":
-    process_image("demo.jpg", "annotated_demo.jpg")
+    process_image("./demo1.jpg", "./annotated_demo1.jpg")
